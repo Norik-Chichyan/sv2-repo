@@ -17,7 +17,8 @@ Below are the architecture of the application in default environments:
 - Java 8 JDK and Maven should be installed to build the application.
 
 #### configure the application
-- Update `src/main/resources/application.yml` file according to your environment
+- Update `src/main/resources/application.yml` file according to your environment.
+> Mandatory fields are presented in `< ABC >` format.
 
 #### build with maven
 - Execute `mvn clean package` while in the project root directory (the directory that contains the `pom.xml` file) to build the package. 
@@ -33,7 +34,7 @@ Below are the architecture of the application in default environments:
 #### application start
 - `java -Xmx256m -Xss32m -Djava.security.egd=file:/dev/urandom -jar <path to jar file>`
 
-> Please, note that ideally you service should be started via SystemD
+> Please, note, that ideally the service should be started by SystemD
 
 - check if your application is up and running via http://<application host FQDN/IP>:8084/swagger-ui.html
 
