@@ -10,7 +10,7 @@ spring:
 info:
   component: Service-Two
   artifact: service-two
-  version: 5.0.0
+  version: <app version>
 
 endpoints:
   restart:
@@ -28,50 +28,25 @@ server:
   port: 8084
 
 ---
-#DEFAULT CONFIGURATION
 spring:
   profiles: default
-  autoconfigure.exclude:
-    - org.springframework.boot.autoconfigure.amqp.RabbitAutoConfiguration
-  cloud:
-    consul.enabled: false
-    loadbalancer.ribbon.enabled: false
-  h2.console:
-    enabled: true
-    path: /h2
-  datasource:
-    url: jdbc:h2:mem:service-two
-    driverClassName: org.h2.Driver
-    username: mudigal
-    password: mudigal
-    driver-class-name: org.h2.Driver
-  jpa.database-platform: org.hibernate.dialect.H2Dialect
-logging:
-  level:
-    org.springframework.web: WARN
-    com.mudigal.one: INFO
-
----
-# DOCKER CONFIGURATION
-spring:
-  profiles: docker
   autoconfigure.exclude:
     - org.springframework.boot.autoconfigure.h2.H2ConsoleAutoConfiguration
   cloud:
     consul:
-      host: consul
+      host: <consul FQDN/IP>
       port: 8500
       discovery:
-        hostName: service-two
+        hostName: <application host FQDN/IP>
         instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
         healthCheckPath: ${management.contextPath}/health
         healthCheckInterval: 15s
     loadbalancer.ribbon.enabled: false
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://service-two-db/service-two?createDatabaseIfNotExist=true
-    username: service-two
-    password: service-two
+    url: jdbc:mysql://<MySQL DB FQDN/IP>/<DB name>?createDatabaseIfNotExist=true
+    username: <DB username>
+    password: <DB password>
   jpa:
     hibernate:
       ddl-auto: create
@@ -79,14 +54,14 @@ spring:
     properties.hibernate.dialect: org.hibernate.dialect.MySQL5InnoDBDialect
     show-sql: true
   rabbitmq:
-    host: rabbit
+    host: <RabbitMQ FQDN/IP>
     port: 5672
-    username: mudigal
-    password: mudigal
+    username: <RabbitMQ username>
+    password: <RabbitMQ password>
     virtualHost: /
 
 logstash:
-  servers: logstash:5000
+  servers: <Logstash FQDN/IP>:5000
 
 logging:
   file: service-two-application.log
