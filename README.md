@@ -9,7 +9,6 @@ A simple application which generates UUID every minute and updates the same in M
 Below are the architecture of the application in default environments:
 
 #### Default Environment
-
 ![alt tag](./doc/architecture/service-two%20(docker).png?raw=true)   
 
 ### Build
@@ -26,17 +25,17 @@ This will generate a file `./target/service-two.jar`.
 
 ### Run
 
-#### Prerequisites
+#### prerequisites
 
 - A MySQL database, RabbitMQ, and Consul should be up and running and reachable for the application.
 - Java 8 JRE should be installed run the application.
 
-#### Application start
+#### application start
 - `java -Xmx256m -Xss32m -Djava.security.egd=file:/dev/urandom -jar <path to jar file>`
 
 > Please, note that ideally you service should be started via SystemD
 
-##### Check if your application is running
+##### check if your application is up and running
 
 http://<application host FQDN/IP>:8084/swagger-ui.html
 
