@@ -1,6 +1,6 @@
 
 
-# Service Two
+# Microservice: Service Two
 
 ## Use case
 
@@ -14,24 +14,26 @@ Below are the architecture of the application in different environments:
 
 ### Build
 
-#### Prepare build environment
-- install openjdk:8 and maven
+#### prepare the build environment
+- install `openjdk:8` and `maven`
 
 #### configure the application
-- update src/main/resources/application.yml file according to your environment
+- update `src/main/resources/application.yml` file according to your environment
 
 #### build with maven
-- mvn clean package
-- build artifact location - target/service-two.jar 
+- `mvn clean package`
+- artifact `target/service-two.jar `
 
-### Run with
-java -Xmx256m -Xss32m -Djava.security.egd=file:/dev/urandom -jar <path to jar file>
+### Run
+- `java -Xmx256m -Xss32m -Djava.security.egd=file:/dev/urandom -jar <path to jar file>`
+
+> Please, note that ideally you service should be started via SystemD
 
 ### Extras
 
-##### Swagger UI
+##### Check if your application is running
 
-http://localhost:8084/swagger-ui.html
+http://<application host FQDN/IP>:8084/swagger-ui.html
 
 ![alt tag](./doc/tools/swagger.png?raw=true)   
 
